@@ -1,15 +1,15 @@
-const userSchema = require('../models/user.model');
+const playerSchema = require('../models/player.model');
 
-const signIn = (req, res) => {
-    const user = userSchema(req.body);
-    user
+const addPlayer = (req, res) => {
+    const player = userSchema(req.body);
+    player
         .save()
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 };
 
-const getUser = (req, res) => {
-    userSchema
+const getPlayer = (req, res) => {
+    playerSchema
         .find()
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
@@ -18,9 +18,9 @@ const getUser = (req, res) => {
 
 const getById = (req, res) => {
     const { id } = req.params;
-    const { name, email, age } = req.body;
-    userSchema
-        .updateOne({ _id: id }, { $set: {name, email, age} })
+    const { name, position, number } = req.body;
+    playerSchema
+        .updateOne({ _id: id }, { $set: {name, position, number} })
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 };
@@ -28,15 +28,15 @@ const getById = (req, res) => {
 
 const updateById = (req, res) => {
     const { id } = req.params;
-    const { name, email, age } = req.body;
+    const { name, position, number } = req.body;
     userSchema
-        .updateOne({ _id: id }, { $set: {name, email, age} })
+        .updateOne({ _id: id }, { $set: {name, position, number} })
         .then((data) => res.json(data))
         .catch((error) => res.json({message: error}));
 };
 
 
-const deleteUser = (req, res) => {
+const deletePlayer = (req, res) => {
     const { id } = req.params;
     userSchema
         .remove(id)
@@ -44,5 +44,5 @@ const deleteUser = (req, res) => {
         .catch((error) => res.json({message: error}));
 };
 
-module.exports = { signIn, getUser, getById, updateById, deleteUser }
+module.exports = { addPlayer, getPlayer, getById, updateById, deletePlayer }
 
