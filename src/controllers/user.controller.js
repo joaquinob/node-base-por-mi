@@ -1,7 +1,7 @@
 const userSchema = require('../models/user.model');
 const bcrypt = require('bcrypt');
-const { validateEmailDB, validatePassword } = require('../../utils/validator');
-const { generateToken } = require('../../utils/jwt');
+const { validateEmailDB, validatePassword } = require('../utils/validator');
+const { generateToken } = require('../utils/jwt');
 
 const register = async (req, res) => {
   try {
