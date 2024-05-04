@@ -1,20 +1,21 @@
 const express = require('express');
-const router = express.Router();
+const playerRouter = express.Router();
 const { addPlayer, getPlayer, getById, updateById, deletePlayer } = require('../controllers/players.controller');
+const { isAuth } = require('../middleware/auth');
 
 //create user
-router.post('/player', addPlayer);
+playerRouter.post('/player', [isAuth], addPlayer);
 
 //read users
-router.get('/player', getPlayer);
+playerRouter.get('/player', [isAuth], getPlayer);
 
 //read user by id
-router.get('/player/:id', getById);
+playerRouter.get('/player/:id', [isAuth], getById);
 
 //update users
-router.put('/player/:id', updateById);
+playerRouter.put('/player/:id', [isAuth], updateById);
 
 //delete user
-router.delete('/player/:id', deletePlayer);
+playerRouter.delete('/player/:id', [isAuth], deletePlayer);
 
-module.exports = router
+module.exports = playerRouter

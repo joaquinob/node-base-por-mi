@@ -1,4 +1,4 @@
-const playerSchema = require('../models/player.model');
+const playerSchema = require('../models/players.model');
 
 const addPlayer = (req, res) => {
     const player = userSchema(req.body);
