@@ -1,5 +1,6 @@
 const express = require('express');
 const playerRouter = express.Router();
+
 const { addPlayer, getPlayer, getById, updateById, deletePlayer } = require('../controllers/players.controller');
 const { isAuth } = require('../middleware/auth');
 

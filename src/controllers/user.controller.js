@@ -6,9 +6,7 @@ const { generateToken } = require('../utils/jwt');
 const register = async (req, res) => {
   try {
     const userDoc = new userSchema(req.body);
-    console.log(req.body);
     const valEmail = await validateEmailDB(req.body.email);
-    console.log(valEmail);
     if (!valEmail) {
       const valPassword = validatePassword(req.body.password);
       if (valPassword) {
@@ -57,8 +55,6 @@ const login = async (req, res) => {
 };
 
 const modifyProfile = async (req, res) => {
-  console.log('funcion de modificar');
-  console.log(req.userProfile);
   const newUser = new userSchema(req.body);
   newUser.password = bcrypt.hashSync(req.body.password, 10);
   newUser._id = req.userProfile._id;
@@ -70,13 +66,5 @@ const modifyProfile = async (req, res) => {
   );
   return res.status(200).json({ data: updateUser });
 };
-const getUsers = async (req, res) => {
-  try {
-    const usersDB = await User.find();
-    return res.json(usersDB);
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-module.exports = { register, login, modifyProfile, getUsers };
+module.exports = { register, login, modifyProfile };
