@@ -8,7 +8,7 @@ const generateToken = (data) => {
 }
 const verifyToken = (token) => {
     console.log(token)
-    return jwt.verify(token, "secreteKeyJoaquin")
+    return jwt.verify(token, "secretKeyJoaquin")
 
 }
 
